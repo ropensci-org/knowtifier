@@ -38,23 +38,24 @@ heroku addons:create scheduler:standard
 heroku addons:open scheduler
 ```
 
-Add the task ```rake do``` to your heroku scheduler and set to whatever schedule you want.
+Add the task ```rake run``` to your heroku scheduler and set to whatever schedule you want.
 
 
 ## Usage
 
-If you have your repo in an env var as above, run the rake task `do`
+If you have your repo in an env var as above, run the rake task `run`
 
 ```
-rake do
+rake run
 ```
 
-If not, then pass the repo to `do` like
+If not, then pass the repo to `run` like
 
 ```
-rake do repo=owner/repo
+rake run repo=owner/repo
 ```
 
 ## Rake tasks
 
-* rake run - check a package
+* rake envs  # list env vars
+* rake run   # checks for new packages or new releases
