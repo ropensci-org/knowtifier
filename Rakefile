@@ -1,4 +1,3 @@
-require 'octokit'
 require_relative 'knowtifier'
 
 desc "checks for new packages or new releases"
