@@ -13,6 +13,12 @@ $twitclient = Twitter::REST::Client.new do |config|
 end
 
 module Knowtifier
+  def self.clean_desc(x, y)
+    y = y.gsub(/\n/, ' ')
+    len = 140 - (x + 4)
+    y[0..len]
+  end
+
   def self.check(package, time_period)
     puts 'checking package "' + package + '"'
 
@@ -37,9 +43,10 @@ module Knowtifier
 
         if time_since(new_pkg_date) <= time_period
           puts 'new package, sending tweet'
-          tweet = "New @rOpenSci pkg. %s (v.%s) on CRAN (https://cran.rstudio.com/web/packages/%s) src: %s" % [
-            package, ver1, package, res['versions'][ver1]['URL']
+          tweet = "New @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
+            package, ver1, package
           ]
+          tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
           $twitclient.update(tweet)
         end
       end
@@ -54,9 +61,10 @@ module Knowtifier
 
         if time_since(new_ver_date) <= time_period
           puts 'new package version, sending tweet'
-          tweet = "New ver. @rOpenSci pkg. %s (v.%s) on CRAN (https://cran.rstudio.com/web/packages/%s) src: %s" % [
-            package, ver1, package, res['versions'][ver1]['URL']
+          tweet = "New ver. @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
+            package, ver1, package
           ]
+          tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
           $twitclient.update(tweet)
         end
       end
