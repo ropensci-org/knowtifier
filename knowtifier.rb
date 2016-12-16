@@ -47,7 +47,19 @@ module Knowtifier
             package, ver1, package
           ]
           tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
-          $twitclient.update(tweet)
+
+          # if tweet already sent, skip
+          mytweets = $twitclient.user_timeline
+          logg = []
+          mytweets.each do |z|
+            logg << tweet.sub(/http.+/, '').casecmp(z.text.sub(/http.+/, '')) == 0
+          end
+          if logg.include?(0)
+            puts 'skipping, tweet already sent'
+          else
+            # not sent, sending it
+            $twitclient.update(tweet)
+          end
         end
       end
 
@@ -65,7 +77,19 @@ module Knowtifier
             package, ver1, package
           ]
           tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
-          $twitclient.update(tweet)
+
+          # if tweet already sent, skip
+          mytweets = $twitclient.user_timeline
+          logg = []
+          mytweets.each do |z|
+            logg << tweet.sub(/http.+/, '').casecmp(z.text.sub(/http.+/, '')) == 0
+          end
+          if logg.include?(0)
+            puts 'skipping, tweet already sent'
+          else
+            # not sent, sending it
+            $twitclient.update(tweet)
+          end
         end
       end
     end
