@@ -20,3 +20,6 @@ _yardoc
 doc/
 
 settings.yml
+
+*.png
+*.txt
