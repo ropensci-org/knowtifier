@@ -42,7 +42,6 @@ module Knowtifier
         new_pkg_date.utc
 
         if time_since(new_pkg_date) <= time_period
-          puts 'new package, sending tweet'
           tweet = "New @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
             package, ver1, package
           ]
@@ -58,6 +57,7 @@ module Knowtifier
             puts 'skipping, tweet already sent'
           else
             # not sent, sending it
+            puts 'new package, sending tweet'
             $twitclient.update(tweet)
           end
         end
@@ -72,7 +72,6 @@ module Knowtifier
         new_ver_date.utc
 
         if time_since(new_ver_date) <= time_period
-          puts 'new package version, sending tweet'
           tweet = "New ver. @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
             package, ver1, package
           ]
@@ -88,6 +87,7 @@ module Knowtifier
             puts 'skipping, tweet already sent'
           else
             # not sent, sending it
+            puts 'new package version, sending tweet'
             $twitclient.update(tweet)
           end
         end
