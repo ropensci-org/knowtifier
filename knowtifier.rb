@@ -42,7 +42,7 @@ module Knowtifier
         new_pkg_date.utc
 
         if time_since(new_pkg_date) <= time_period
-          tweet = "New @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
+          tweet = "New @rOpenSci pkg. %s (v.%s) https://cran.r-project.org/web/packages/%s" % [
             package, ver1, package
           ]
           tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
@@ -72,7 +72,7 @@ module Knowtifier
         new_ver_date.utc
 
         if time_since(new_ver_date) <= time_period
-          tweet = "New ver. @rOpenSci pkg. %s (v.%s) https://cran.rstudio.com/web/packages/%s" % [
+          tweet = "New ver. @rOpenSci pkg. %s (v.%s) https://cran.r-project.org/web/packages/%s" % [
             package, ver1, package
           ]
           tweet = tweet + ' ' + clean_desc(tweet.length, res['versions'][ver1]['Description'])
