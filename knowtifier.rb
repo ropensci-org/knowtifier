@@ -155,7 +155,7 @@ module Knowtifier
   # end
 
   def self.get_packages
-    conn = Faraday.new(:url => 'https://raw.githubusercontent.com/ropensci/roregistry/master/registry.json') do |f|
+    conn = Faraday.new(:url => 'https://raw.githubusercontent.com/ropensci/roregistry/gh-pages/registry.json') do |f|
       f.adapter Faraday.default_adapter
     end
     x = conn.get
